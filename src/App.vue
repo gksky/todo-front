@@ -1,28 +1,35 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-container>
+      <v-row class="">
+        <v-col cols="4">
+          <List title="TODO" tcolor="orange darken-4"/>
+        </v-col>
+
+        <v-col cols="4">
+          <List title="DOING" tcolor="green darken-4"/>
+        </v-col>
+
+        <v-col cols="4">
+          <List title="DONE" tcolor="blue darken-4"/>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import List from './components/list';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    List,
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>
