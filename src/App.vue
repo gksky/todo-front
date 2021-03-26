@@ -35,6 +35,7 @@ export default {
     items: [
       {
         id: 11,
+        date: '2021-03-20',
         list: 'todo',
         title: 'Summer BBQ',
         comments: [
@@ -43,7 +44,17 @@ export default {
         ]
       },
       {
+        id: 10,
+        date: '2021-02-20',
+        list: 'doing',
+        title: 'Summer BBQ',
+        comments: [
+          `Wish I could come, but I'm out of town this weekend.`,
+        ]
+      },
+      {
         id: 12,
+        date: '2021-02-24',
         list: 'doing',
         title: 'Summer BBQ',
         comments: [
@@ -52,12 +63,13 @@ export default {
       },
       {
         id: 13,
+        date: '2021-01-20',
         list: 'done',
         title: 'Summer BBQ',
         comments: [
-          `Wish I could come, but I'm out of town this weekend.`,
-          `Wish I could come, but I'm out of town this weekend.`,
-          `Wish I could come, but I'm out of town this weekend.`,
+          `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`,
+          `Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+          `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
         ]
       },
     ]
