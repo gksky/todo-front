@@ -1,6 +1,5 @@
 <template>
   <v-card
-    max-width="450"
     class="mx-auto"
     
   >
@@ -29,11 +28,30 @@
 
         <v-card>
           <v-card-title>
-            <span class="headline">{{ editable.id }} <span v-if="!editable.id">New</span> Record edit &mdash; {{ editable.date }}</span>
+            <span class="headline">{{ editable.id }} <span v-if="!editable.id">New</span> Record edit &mdash; {{ editable.tododate }}</span>
           </v-card-title>
           <v-card-text>
             <v-container>
               <v-row>
+
+                  <v-btn-toggle
+                    v-model="editable.status"
+                    mandatory
+                    color="primary"
+                  >
+                    <v-btn value="todo">
+                      TODO
+                    </v-btn>
+
+                    <v-btn value="doing">
+                      DOING
+                    </v-btn>
+
+                    <v-btn value="done">
+                      DONE
+                    </v-btn>
+                  </v-btn-toggle>
+
                 <v-col cols="12">
                   <v-text-field
                     v-model="editable.title"
@@ -70,7 +88,7 @@
             <v-btn
               color="blue darken-1"
               text
-              @click="dialog = false"
+              @click="sendData(); dialog = false"
             >
               Save
             </v-btn>
@@ -101,7 +119,7 @@
         </v-list-item>
 
         <v-divider
-          :key="index"
+          :key="-index"
         ></v-divider>
       </template>
     </v-list>
@@ -116,13 +134,17 @@
       editable: {},
     }),
     methods: {
-      newRecord: function() {
-        this.editable = {}
+      newRecord() {
+        const now = new Date()
+        this.editable = {tododate: now.toISOString().substring(0, 10), comments: []}
         this.dialog = true
       },
-      editRecord: function(index) {
-        this.editable = this.items[index]
+      editRecord(index) {
+        this.editable = JSON.parse(JSON.stringify(this.items[index]))
         this.dialog = true
+      },
+      sendData() {
+        this.$emit('sendData', this.editable)
       }
     }
   }
