@@ -1,7 +1,6 @@
 <template>
   <v-card
     class="mx-auto"
-    
   >
     <v-toolbar
       :color="tcolor"
@@ -28,54 +27,69 @@
 
         <v-card>
           <v-card-title>
-            <span class="headline">{{ editable.id }} <span v-if="!editable.id">New</span> Record edit &mdash; {{ editable.tododate }}</span>
+            <span class="headline">Редактирование <span v-if="!editable.id">новой </span>записи &mdash; {{ editable.tododate }}</span>
           </v-card-title>
           <v-card-text>
             <v-container>
-              <v-row>
+              <v-row
+                class="d-flex justify-center"
+              >
+                <v-btn-toggle
+                  v-model="editable.status"
+                  mandatory
+                  color="primary"
+                >
+                  <v-btn value="todo">
+                    TODO
+                  </v-btn>
 
-                  <v-btn-toggle
-                    v-model="editable.status"
-                    mandatory
-                    color="primary"
-                  >
-                    <v-btn value="todo">
-                      TODO
-                    </v-btn>
+                  <v-btn value="doing">
+                    DOING
+                  </v-btn>
 
-                    <v-btn value="doing">
-                      DOING
-                    </v-btn>
-
-                    <v-btn value="done">
-                      DONE
-                    </v-btn>
-                  </v-btn-toggle>
+                  <v-btn value="done">
+                    DONE
+                  </v-btn>
+                </v-btn-toggle>
 
                 <v-col cols="12">
                   <v-text-field
                     v-model="editable.title"
-                    label="Title*"
+                    label="Заголовок*"
                     required
+                    outlined
+                    dense
                   ></v-text-field>
+                </v-col>
+
+                <v-col cols="12">
+                    <v-textarea
+                    v-model="editable.description"
+                    outlined
+                    name="input-7-4"
+                    label="Описание"
+                    value=""
+                    row-height="30"
+                  ></v-textarea>
                 </v-col>
                 
                 <v-col cols="12">
                   <v-text-field
                     v-model="editable.newComment"
-                    label="Comment"
-                    required
+                    label="Комментарий"
+                    outlined
+                    dense
                   ></v-text-field>
                 </v-col>
-                
               </v-row>
             </v-container>
-            <small>*indicates required field</small>
-            <p v-if="editable.comments">Comments:</p>
+
+            <p v-if="editable.comments.length">Комментарии:</p>
             <div v-for="(comment, index) in editable.comments" :key="index">
-                  {{ index + 1}}. {{ comment }}
-                </div>
+              {{ index + 1}}. {{ comment }}
+            </div>
           </v-card-text>
+
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
@@ -85,6 +99,7 @@
             >
               Close
             </v-btn>
+
             <v-btn
               color="blue darken-1"
               text
@@ -95,7 +110,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-
     </v-toolbar>
 
     <v-list three-line>
@@ -114,7 +128,6 @@
             >
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
-            
           </v-list-item-icon>
         </v-list-item>
 
@@ -131,7 +144,7 @@
     props: ['title', 'tcolor', 'items'],
     data: () => ({
       dialog: false,
-      editable: {},
+      editable: {comments: []},
     }),
     methods: {
       newRecord() {

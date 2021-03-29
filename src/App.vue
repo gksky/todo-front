@@ -37,7 +37,7 @@ export default {
   methods: {
     async sendData(record) {
       try {
-        await fetch('http://localhost/api.php', {
+        await fetch('api.php', {
           method: 'POST',
           body: JSON.stringify(record),
           headers: {
@@ -47,7 +47,6 @@ export default {
       } catch (error) {
         console.error('Ошибка:', error);
       }
-
       this.getData()
     },
     filter() {
@@ -56,7 +55,7 @@ export default {
       this.done = this.items.filter(item => item.status == 'done')
     },
     async getData() {
-      const f = await fetch('http://localhost/api.php')
+      const f = await fetch('api.php')
       this.items = await f.json()
       this.filter()
     }
@@ -64,6 +63,5 @@ export default {
   created() {
     this.getData()
   }
-
 };
 </script>
