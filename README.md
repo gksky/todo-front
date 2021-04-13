@@ -1,5 +1,7 @@
 # todo
 
+Web-приложение для составления списка дел. Используется Vue.js и Vuetify. Общается с back-end через API с помощью POST запросов.
+
 ## Project setup
 ```
 npm install
